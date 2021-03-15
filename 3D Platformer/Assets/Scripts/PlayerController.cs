@@ -9,8 +9,12 @@ public class PlayerController : MonoBehaviour {
     public float turnSpeed = 3.0f;
     public float maxSpeed = 8.0f;
     public float jumpForce = 6.0f;
-    private float gravity = 10.0f;
+    public float gravity;
+    private float checkRadius = 0.05f;
+    public bool isGrounded;
+    private Vector3 velocity;
     private Vector3 forwardMovement;
+    public LayerMask whatIsGround;
     public Transform groundCheck;
     private CharacterController characterController;
     void Awake() {
@@ -23,28 +27,43 @@ public class PlayerController : MonoBehaviour {
         Movement();
     }
     void Movement() {
+        isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, whatIsGround);
+        if(isGrounded && velocity.y > 0) {
+            velocity.y = -2.0f;
+        }
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
         forwardMovement = new Vector3(0.0f, 0.0f, verticalInput);
-        if(forwardMovement != Vector3.zero && Input.GetButton("Up")) {
-            Walk();
-        } else if(forwardMovement != Vector3.zero && Input.GetButton("Up")) {
-            Run();
-        } else if(forwardMovement == Vector3.zero) {
-            Idle();
+        if (isGrounded) {
+            if (forwardMovement != Vector3.zero && Input.GetKey(KeyCode.LeftShift)) {
+                Walk();
+            }
+            else if (forwardMovement != Vector3.zero && Input.GetKey(KeyCode.LeftShift)) {
+                Run();
+            }
+            else if (forwardMovement == Vector3.zero) {
+                Idle();
+            }
+            forwardMovement *= speed;
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                Jump();
+            }
         }
-        forwardMovement *= speed;
         characterController.Move(forwardMovement * speed * Time.deltaTime);
         transform.Rotate(Vector3.up * turnSpeed * horizontalInput);
+        velocity.y += gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime);
     }
-    public void Idle() {
+    void Idle() {
 
     }
-    public void Walk() {
+    void Walk() {
         speed = walkSpeed;
     }
-    public void Run() {
+    void Run() {
         speed = runSpeed;
     }
-
+    void Jump() {
+        velocity.y = Mathf.Sqrt(jumpForce * -gravity);
+    }
 }
