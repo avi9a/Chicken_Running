@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed = 8.0f;
     public float jumpForce = 6.0f;
     public Transform groundCheck;
+    private CharacterController characterController;
     void Awake() {
 
     }
     void Start() {
+        characterController = GetComponent<CharacterController>();
     }
     void FixedUpdate() {
         Movement();
