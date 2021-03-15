@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour {
     void Movement() {
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.forward * speed * verticalInput * Time.deltaTime);
+        float curSpeed = speed * verticalInput;
+        Vector3 forwardMovement = transform.TransformDirection(Vector3.forward);
+        characterController.SimpleMove(forwardMovement * curSpeed);
         transform.Rotate(Vector3.up * turnSpeed * horizontalInput);
+        
     }
 }
