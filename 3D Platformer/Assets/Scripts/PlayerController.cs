@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour {
     public float walkSpeed = 4.0f;
     public float runSpeed = 6.0f;
     public float turnSpeed = 3.0f;
-    public float maxSpeed = 8.0f;
     public float jumpForce = 6.0f;
     public float gravity;
     private float checkRadius = 0.05f;
@@ -17,9 +16,6 @@ public class PlayerController : MonoBehaviour {
     public LayerMask whatIsGround;
     public Transform groundCheck;
     private CharacterController characterController;
-    void Awake() {
-
-    }
     void Start() {
         characterController = GetComponent<CharacterController>();
     }
@@ -50,7 +46,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
         characterController.Move(forwardMovement * speed * Time.deltaTime);
-        transform.Rotate(Vector3.up * turnSpeed * horizontalInput);
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
     }
