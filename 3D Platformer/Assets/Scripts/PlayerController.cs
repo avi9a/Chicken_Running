@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour {
         float horizontalInput = Input.GetAxis("Horizontal");
         forwardMovement = new Vector3(0.0f, 0.0f, verticalInput);
         if (isGrounded) {
-            if (forwardMovement != Vector3.zero && Input.GetKey(KeyCode.LeftShift)) {
+            if (forwardMovement != Vector3.zero && Input.GetKey(KeyCode.UpArrow)) {
                 Walk();
             }
             else if (forwardMovement != Vector3.zero && Input.GetKey(KeyCode.LeftShift)) {
