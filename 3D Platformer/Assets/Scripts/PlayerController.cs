@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    public float speed;
+    public float speed = 0.5f;
     public float walkSpeed = 4.0f;
     public float runSpeed = 6.0f;
     public float turnSpeed = 3.0f;
@@ -29,12 +29,12 @@ public class PlayerController : MonoBehaviour {
         }
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
-        forwardMovement = new Vector3(0.0f, 0.0f, verticalInput);
+        forwardMovement = new Vector3(horizontalInput, 0.0f, verticalInput);
         if (isGrounded) {
-            if (forwardMovement != Vector3.zero && Input.GetKey(KeyCode.UpArrow)) {
+            if (forwardMovement != Vector3.zero /*&& (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))*/) {
                 Walk();
             }
-            else if (forwardMovement != Vector3.zero && Input.GetKey(KeyCode.LeftShift)) {
+            else if (forwardMovement != Vector3.zero && Input.GetKeyDown(KeyCode.LeftShift)) {
                 Run();
             }
             else if (forwardMovement == Vector3.zero) {
