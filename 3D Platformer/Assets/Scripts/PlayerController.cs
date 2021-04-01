@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
     public float gravity;
     private float checkRadius = 0.05f;
     public bool isGrounded;
+    private static float verticalInput;
+    private static float horizontalInput;
     private Vector3 velocity;
     private Vector3 forwardMovement;
     public LayerMask whatIsGround;
@@ -27,15 +29,13 @@ public class PlayerController : MonoBehaviour {
         if(isGrounded && velocity.y > 0) {
             velocity.y = -2.0f;
         }
-        float verticalInput = Input.GetAxis("Vertical");
-        float horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
         forwardMovement = new Vector3(horizontalInput, 0.0f, verticalInput);
         if (isGrounded) {
-            if (forwardMovement != Vector3.zero /*&& (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))*/) {
+            if (forwardMovement != Vector3.zero && (Input.GetKey(KeyCode.UpArrow))) {
+                transform.rotation = Quaternion.LookRotation(forwardMovement);
                 Walk();
-            }
-            else if (forwardMovement != Vector3.zero && Input.GetKeyDown(KeyCode.LeftShift)) {
-                Run();
             }
             else if (forwardMovement == Vector3.zero) {
                 Idle();
@@ -45,18 +45,18 @@ public class PlayerController : MonoBehaviour {
                 Jump();
             }
         }
-        characterController.Move(forwardMovement * speed * Time.deltaTime);
+        characterController.Move((forwardMovement * speed * Time.deltaTime)/8);
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+    }
+    void PlayerRotation() {
+        if()
     }
     void Idle() {
 
     }
     void Walk() {
         speed = walkSpeed;
-    }
-    void Run() {
-        speed = runSpeed;
     }
     void Jump() {
         velocity.y = Mathf.Sqrt(jumpForce * -gravity);
