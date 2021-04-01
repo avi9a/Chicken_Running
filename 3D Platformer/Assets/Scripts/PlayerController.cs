@@ -50,7 +50,16 @@ public class PlayerController : MonoBehaviour {
         characterController.Move(velocity * Time.deltaTime);
     }
     void PlayerRotation() {
-        if()
+        if(horizontalInput > 0) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.right), 2 * Time.deltaTime);
+        } else if(horizontalInput < 0) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.left), 2 * Time.deltaTime);
+        }
+        if(verticalInput > 0) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward), 2 * Time.deltaTime);
+        } else if(verticalInput < 0) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.back), 2 * Time.deltaTime);
+        }
     }
     void Idle() {
 
