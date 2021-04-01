@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     public float speed = 0.5f;
     public float walkSpeed = 4.0f;
-    public float runSpeed = 6.0f;
     public float turnSpeed = 3.0f;
     public float jumpForce = 6.0f;
     public float gravity;
@@ -18,11 +17,14 @@ public class PlayerController : MonoBehaviour {
     public LayerMask whatIsGround;
     public Transform groundCheck;
     private CharacterController characterController;
+    private Animator characterAnimator;
     void Start() {
         characterController = GetComponent<CharacterController>();
+        characterAnimator = GetComponent<Animator>();
     }
     void FixedUpdate() {
         Movement();
+        PlayerRotation();
     }
     void Movement() {
         isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, whatIsGround);
@@ -34,18 +36,17 @@ public class PlayerController : MonoBehaviour {
         forwardMovement = new Vector3(horizontalInput, 0.0f, verticalInput);
         if (isGrounded) {
             if (forwardMovement != Vector3.zero && (Input.GetKey(KeyCode.UpArrow))) {
-                transform.rotation = Quaternion.LookRotation(forwardMovement);
+                characterAnimator.SetFloat("Speed", speed);
                 Walk();
             }
             else if (forwardMovement == Vector3.zero) {
                 Idle();
             }
-            forwardMovement *= speed;
             if (Input.GetKeyDown(KeyCode.Space)) {
                 Jump();
             }
         }
-        characterController.Move((forwardMovement * speed * Time.deltaTime)/8);
+        characterController.Move(forwardMovement * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
     }
