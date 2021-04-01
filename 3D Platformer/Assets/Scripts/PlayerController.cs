@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour {
     public Transform groundCheck;
     private CharacterController characterController;
     private Animator characterAnimator;
+    private AudioSource characterAudio;
     void Start() {
         characterController = GetComponent<CharacterController>();
         characterAnimator = GetComponent<Animator>();
+        characterAudio = GetComponent<AudioSource>();
     }
     void FixedUpdate() {
         Movement();
@@ -67,6 +69,10 @@ public class PlayerController : MonoBehaviour {
     }
     void Walk() {
         speed = walkSpeed;
+        if (!characterAudio.isPlaying) {
+            characterAudio.Play();
+        }
+        else characterAudio.Stop();
     }
     void Jump() {
         velocity.y = Mathf.Sqrt(jumpForce * -gravity);
