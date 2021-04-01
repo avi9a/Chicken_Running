@@ -3990,6 +3990,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1145608686}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1365601626
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365601625}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 46d0b1354c1891d458a732548bb69bf6, type: 3}
+  m_Controller: {fileID: 9100000, guid: 84dd067921f4e0045bb3a9a6e8fb7789, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1365601627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4303844821561524, guid: 312b31977ed9b2d48a14849ebb8c7fb3,
@@ -4008,14 +4027,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b687a54156a6d49af68742d13381dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  walkSpeed: 1
-  runSpeed: 3
+  speed: 1
+  walkSpeed: 5
   turnSpeed: 3
   jumpForce: 6
   gravity: -10
   isGrounded: 0
-  player: {fileID: 1365601625}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
