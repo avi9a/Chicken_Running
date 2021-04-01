@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
                 Walk();
             }
             else if (forwardMovement == Vector3.zero) {
+                characterAnimator.SetFloat("Speed", 0);
                 Idle();
             }
             if (Input.GetKeyDown(KeyCode.Space)) {
@@ -65,14 +66,13 @@ public class PlayerController : MonoBehaviour {
         }
     }
     void Idle() {
-
+        characterAudio.Stop();
     }
     void Walk() {
         speed = walkSpeed;
         if (!characterAudio.isPlaying) {
             characterAudio.Play();
         }
-        else characterAudio.Stop();
     }
     void Jump() {
         velocity.y = Mathf.Sqrt(jumpForce * -gravity);
