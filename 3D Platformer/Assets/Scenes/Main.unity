@@ -4015,6 +4015,7 @@ MonoBehaviour:
   jumpForce: 6
   gravity: -10
   isGrounded: 0
+  player: {fileID: 1365601625}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
