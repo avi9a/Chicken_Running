@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour {
     }
     void FixedUpdate() {
         Movement();
-        PlayerRotation();
     }
     void Movement() {
         isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, whatIsGround);
@@ -36,8 +35,21 @@ public class PlayerController : MonoBehaviour {
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         forwardMovement = new Vector3(horizontalInput, 0.0f, verticalInput);
+        forwardMovement.Normalize();
+        if (horizontalInput > 0) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.right), 2 * Time.deltaTime);
+        }
+        else if (horizontalInput < 0) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.left), 2 * Time.deltaTime);
+        }
+        if (verticalInput > 0) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward), 2 * Time.deltaTime);
+        }
+        else if (verticalInput < 0) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.back), 2 * Time.deltaTime);
+        }
         if (isGrounded) {
-            if (forwardMovement != Vector3.zero && (Input.GetKey(KeyCode.UpArrow))) {
+            if (forwardMovement != Vector3.zero) {
                 characterAnimator.SetFloat("Speed", speed);
                 Walk();
             }
@@ -52,18 +64,6 @@ public class PlayerController : MonoBehaviour {
         characterController.Move(forwardMovement * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
-    }
-    void PlayerRotation() {
-        if(horizontalInput > 0) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.right), 2 * Time.deltaTime);
-        } else if(horizontalInput < 0) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.left), 2 * Time.deltaTime);
-        }
-        if(verticalInput > 0) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward), 2 * Time.deltaTime);
-        } else if(verticalInput < 0) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.back), 2 * Time.deltaTime);
-        }
     }
     void Idle() {
         characterAudio.Stop();
