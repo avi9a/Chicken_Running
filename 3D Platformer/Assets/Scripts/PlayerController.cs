@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     public float speed = 0.5f;
     public float walkSpeed = 4.0f;
-    public float turnSpeed = 3.0f;
+    public float turnSpeed = 5.0f;
     public float jumpForce = 6.0f;
     public float gravity;
     private float checkRadius = 0.05f;
@@ -37,30 +37,30 @@ public class PlayerController : MonoBehaviour {
         forwardMovement = new Vector3(horizontalInput, 0.0f, verticalInput);
         forwardMovement.Normalize();
         if (horizontalInput > 0) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.right), 2 * Time.deltaTime);
-        }
-        else if (horizontalInput < 0) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.left), 2 * Time.deltaTime);
-        }
-        if (verticalInput > 0) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward), 2 * Time.deltaTime);
-        }
-        else if (verticalInput < 0) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.back), 2 * Time.deltaTime);
-        }
-        if (isGrounded) {
-            if (forwardMovement != Vector3.zero) {
-                characterAnimator.SetFloat("Speed", speed);
-                Walk();
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.right), turnSpeed * Time.deltaTime);
             }
-            else if (forwardMovement == Vector3.zero) {
-                characterAnimator.SetFloat("Speed", 0);
-                Idle();
+            else if (horizontalInput < 0) {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.left), turnSpeed * Time.deltaTime);
             }
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                Jump();
+            if (verticalInput > 0) {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward), turnSpeed * Time.deltaTime);
             }
-        }
+            else if (verticalInput < 0) {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.back), turnSpeed * Time.deltaTime);
+            }
+            if (isGrounded) {
+                if (forwardMovement != Vector3.zero) {
+                    characterAnimator.SetFloat("Speed", speed);
+                    Walk();
+                }
+                else if (forwardMovement == Vector3.zero) {
+                    characterAnimator.SetFloat("Speed", 0);
+                    Idle();
+                }
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    Jump();
+                }
+            }
         characterController.Move(forwardMovement * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
