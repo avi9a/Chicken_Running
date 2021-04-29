@@ -51,11 +51,13 @@ public class PlayerController : MonoBehaviour {
             if (isGrounded) {
                 if (forwardMovement != Vector3.zero) {
                     characterAnimator.SetFloat("Speed", speed);
-                    Walk();
+                Walk();
                 }
                 else if (forwardMovement == Vector3.zero) {
                     characterAnimator.SetFloat("Speed", 0);
                     Idle();
+                IEnumerator coroutine = WaitAndTurn(6);
+                StartCoroutine(coroutine);
                 }
                 if (Input.GetKeyDown(KeyCode.Space)) {
                     Jump();
@@ -65,6 +67,10 @@ public class PlayerController : MonoBehaviour {
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
     }
+    IEnumerator WaitAndTurn(float waitTime) {
+        yield return new WaitForSeconds(waitTime);
+        characterAnimator.SetBool("Eat", true);
+    }
     void Idle() {
         characterAudio.Stop();
     }
@@ -73,6 +79,7 @@ public class PlayerController : MonoBehaviour {
         if (!characterAudio.isPlaying) {
             characterAudio.Play();
         }
+        characterAnimator.SetBool("Eat", false);
     }
     void Jump() {
         velocity.y = Mathf.Sqrt(jumpForce * -gravity);
