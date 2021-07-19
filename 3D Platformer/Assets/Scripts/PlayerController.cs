@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     public bool isGrounded;
     private static float verticalInput;
     private static float horizontalInput;
+    [SerializeField] private Transform player;
     private Vector3 velocity;
     private Vector3 forwardMovement;
     public LayerMask whatIsGround;
@@ -26,6 +27,9 @@ public class PlayerController : MonoBehaviour {
     }
     void FixedUpdate() {
         Movement();
+    }
+    void OnTriggerEnter(Collider other) {
+
     }
     void Movement() {
         isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, whatIsGround);
