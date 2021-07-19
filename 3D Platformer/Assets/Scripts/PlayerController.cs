@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
         Movement();
     }
     void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Chick") {
+        if (collision.gameObject.CompareTag("Chick")) {
             Destroy(gameObject);
         }
     }
