@@ -603,10 +603,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6b63b7b499492ee4396422614793bd3d, type: 2}
+    - target: {fileID: 3223179245908600633, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
         type: 3}
       propertyPath: m_Name
       value: Chick (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Chick
       objectReference: {fileID: 0}
     - target: {fileID: 8987798827590379956, guid: 85f95532c304d324e9df3e71c56faddb,
         type: 3}
@@ -777,10 +787,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6b63b7b499492ee4396422614793bd3d, type: 2}
+    - target: {fileID: 3223179245908600633, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
         type: 3}
       propertyPath: m_Name
       value: Chick (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Chick
       objectReference: {fileID: 0}
     - target: {fileID: 8987798827590379956, guid: 85f95532c304d324e9df3e71c56faddb,
         type: 3}
@@ -1579,10 +1599,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6b63b7b499492ee4396422614793bd3d, type: 2}
+    - target: {fileID: 3223179245908600633, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
         type: 3}
       propertyPath: m_Name
       value: Chick (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Chick
       objectReference: {fileID: 0}
     - target: {fileID: 8987798827590379956, guid: 85f95532c304d324e9df3e71c56faddb,
         type: 3}
@@ -3266,7 +3296,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.07410146, y: -0.000000054114103, z: 0.0000000040209893, w: 0.99725074}
+  m_LocalRotation: {x: 0.07410145, y: 0.00000001768717, z: -0.000000001314258, w: 0.99725074}
   m_LocalPosition: {x: 184.62, y: 5.8, z: -31.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3660,7 +3690,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117500390}
-  m_LocalRotation: {x: 0.07410146, y: -0.000000054114103, z: 0.0000000040209893, w: 0.99725074}
+  m_LocalRotation: {x: 0.07410145, y: 0.00000001768717, z: -0.000000001314258, w: 0.99725074}
   m_LocalPosition: {x: 184.62, y: 5.8, z: -31.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4382,6 +4412,7 @@ MonoBehaviour:
   jumpForce: 3
   gravity: -10
   isGrounded: 0
+  player: {fileID: 1365601627}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -4416,7 +4447,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 07e520bb410492d47bf739846d70f2a3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5253,10 +5284,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6b63b7b499492ee4396422614793bd3d, type: 2}
+    - target: {fileID: 3223179245908600633, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
         type: 3}
       propertyPath: m_Name
       value: Chick (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Chick
       objectReference: {fileID: 0}
     - target: {fileID: 8987798827590379956, guid: 85f95532c304d324e9df3e71c56faddb,
         type: 3}
@@ -6237,9 +6278,19 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6b63b7b499492ee4396422614793bd3d, type: 2}
+    - target: {fileID: 3223179245908600633, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
         type: 3}
       propertyPath: m_Name
+      value: Chick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642622942603260686, guid: 85f95532c304d324e9df3e71c56faddb,
+        type: 3}
+      propertyPath: m_TagString
       value: Chick
       objectReference: {fileID: 0}
     - target: {fileID: 8987798827590379956, guid: 85f95532c304d324e9df3e71c56faddb,
