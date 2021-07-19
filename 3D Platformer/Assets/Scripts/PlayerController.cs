@@ -28,8 +28,10 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         Movement();
     }
-    void OnTriggerEnter(Collider other) {
-
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Chick") {
+            Destroy(gameObject);
+        }
     }
     void Movement() {
         isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, whatIsGround);
