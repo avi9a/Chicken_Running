@@ -28,12 +28,14 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         Movement();
     }
-    void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Chick")) {
-            Destroy(gameObject);
-        }
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+
+        //if (other.gameObject.CompareTag("Chick")) {
+        //    Debug.Log("Chick");
+        //    Destroy(other.gameObject);
+        //}
     }
-    void Movement() {
+        void Movement() {
         isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, whatIsGround);
         if(isGrounded && velocity.y > 0) {
             velocity.y = -2.0f;
